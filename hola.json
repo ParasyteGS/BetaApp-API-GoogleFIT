@@ -1,0 +1,962 @@
+{
+	"dataSource": [
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "duration",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.active_minutes"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "derived:com.google.active_minutes:com.google.android.fit:Xiaomi:M2103K19G:ecb4bcff:top_level",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "duration",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.active_minutes"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "derived:com.google.active_minutes:com.google.android.fit:samsung:SM-R890:d72bcf69:top_level",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "duration",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.active_minutes"
+			},
+			"dataStreamName": "merge_active_minutes",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.active_minutes:com.google.android.gms:merge_active_minutes",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.google.android.fit:Xiaomi:M2103K19G:ecb4bcff:top_level",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.google.android.fit:samsung:SM-R890:d72bcf69:top_level",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataStreamName": "merge_activity_segments",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.google.android.gms:merge_activity_segments",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataStreamName": "session_activity_segment",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.google.android.gms:session_activity_segment",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataStreamName": "session_activity_segment",
+			"application": {
+				"packageName": "com.popularapp.thirtydayfitnesschallenge"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.popularapp.thirtydayfitnesschallenge:session_activity_segment",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataStreamName": "session_activity_segment",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:com.sec.android.app.shealth:session_activity_segment",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "activity",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.activity.segment"
+			},
+			"dataStreamName": "session_activity_segment",
+			"application": {
+				"packageName": "workout.homeworkouts.workouttrainer"
+			},
+			"dataStreamId": "derived:com.google.activity.segment:workout.homeworkouts.workouttrainer:session_activity_segment",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "percentage",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.body.fat.percentage"
+			},
+			"dataStreamName": "merged",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.body.fat.percentage:com.google.android.gms:merged",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.bmr"
+			},
+			"dataStreamName": "merged",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.calories.bmr:com.google.android.gms:merged",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "derived:com.google.calories.expended:com.google.android.fit:Xiaomi:M2103K19G:ecb4bcff:top_level",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "derived:com.google.calories.expended:com.google.android.fit:samsung:SM-R890:d72bcf69:top_level",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataStreamName": "merge_calories_expended",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.calories.expended:com.google.android.gms:merge_calories_expended",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "intensity",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_minutes"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "derived:com.google.heart_minutes:com.google.android.fit:Xiaomi:M2103K19G:ecb4bcff:top_level",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "intensity",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_minutes"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "derived:com.google.heart_minutes:com.google.android.fit:samsung:SM-R890:d72bcf69:top_level",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "intensity",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_minutes"
+			},
+			"dataStreamName": "merge_heart_minutes",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.heart_minutes:com.google.android.gms:merge_heart_minutes",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "bpm",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_rate.bpm"
+			},
+			"dataStreamName": "merge_heart_rate_bpm",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.heart_rate.bpm:com.google.android.gms:merge_heart_rate_bpm",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "bpm",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_rate.bpm"
+			},
+			"dataStreamName": "resting_heart_rate<-merge_heart_rate_bpm",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.heart_rate.bpm:com.google.android.gms:resting_heart_rate<-merge_heart_rate_bpm",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "height",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.height"
+			},
+			"dataStreamName": "merge_height",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.height:com.google.android.gms:merge_height",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "oxygen_saturation",
+						"format": "floatPoint"
+					},
+					{
+						"name": "supplemental_oxygen_flow_rate",
+						"format": "floatPoint"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_therapy_administration_mode",
+						"format": "integer"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_saturation_system",
+						"format": "integer"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_saturation_measurement_method",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.oxygen_saturation"
+			},
+			"dataStreamName": "merged",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.oxygen_saturation:com.google.android.gms:merged",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "sleep_segment_type",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.sleep.segment"
+			},
+			"dataStreamName": "merged",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.sleep.segment:com.google.android.gms:merged",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.delta"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "derived:com.google.step_count.delta:com.google.android.fit:Xiaomi:M2103K19G:ecb4bcff:top_level",
+			"type": "derived"
+		},
+		{
+			"dataStreamName": "top_level",
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.delta"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.fit"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "derived:com.google.step_count.delta:com.google.android.fit:samsung:SM-R890:d72bcf69:top_level",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.delta"
+			},
+			"dataStreamName": "estimated_steps",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.delta"
+			},
+			"dataStreamName": "merge_step_deltas",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.step_count.delta:com.google.android.gms:merge_step_deltas",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "weight",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.weight"
+			},
+			"dataStreamName": "merge_weight",
+			"application": {
+				"packageName": "com.google.android.gms"
+			},
+			"dataStreamId": "derived:com.google.weight:com.google.android.gms:merge_weight",
+			"type": "derived"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "percentage",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.body.fat.percentage"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.body.fat.percentage:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.bmr"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.calories.bmr:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"name": "30 day fit",
+			"dataStreamName": "",
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.popularapp.thirtydayfitnesschallenge"
+			},
+			"dataStreamId": "raw:com.google.calories.expended:com.popularapp.thirtydayfitnesschallenge:",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.calories.expended:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"name": "WorkoutHome working",
+			"dataStreamName": "",
+			"dataType": {
+				"field": [
+					{
+						"name": "calories",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.calories.expended"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "workout.homeworkouts.workouttrainer"
+			},
+			"dataStreamId": "raw:com.google.calories.expended:workout.homeworkouts.workouttrainer:",
+			"type": "raw"
+		},
+		{
+			"dataStreamName": "manual",
+			"dataType": {
+				"field": [
+					{
+						"name": "bpm",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_rate.bpm"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "com.google.android.apps.fitness"
+			},
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "cd76bb7a",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "raw:com.google.heart_rate.bpm:com.google.android.apps.fitness:samsung:SM-R890:cd76bb7a:manual",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "bpm",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_rate.bpm"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.heart_rate.bpm:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "bpm",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.heart_rate.bpm"
+			},
+			"dataStreamName": "Samsung HR Batch Sensor",
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "raw:com.google.heart_rate.bpm:samsung:SM-R890:d72bcf69:Samsung HR Batch Sensor",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "height",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.height"
+			},
+			"dataStreamName": "user_input",
+			"application": {
+				"packageName": "com.google.android.apps.fitness"
+			},
+			"dataStreamId": "raw:com.google.height:com.google.android.apps.fitness:user_input",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "height",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.height"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.height:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "oxygen_saturation",
+						"format": "floatPoint"
+					},
+					{
+						"name": "supplemental_oxygen_flow_rate",
+						"format": "floatPoint"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_therapy_administration_mode",
+						"format": "integer"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_saturation_system",
+						"format": "integer"
+					},
+					{
+						"optional": true,
+						"name": "oxygen_saturation_measurement_method",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.oxygen_saturation"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.oxygen_saturation:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "sleep_segment_type",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.sleep.segment"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "ipnossoft.rma.free"
+			},
+			"dataStreamId": "raw:com.google.sleep.segment:ipnossoft.rma.free:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.cumulative"
+			},
+			"dataStreamName": "STEP_COUNTER",
+			"device": {
+				"model": "M2103K19G",
+				"version": "",
+				"type": "phone",
+				"uid": "ecb4bcff",
+				"manufacturer": "Xiaomi"
+			},
+			"dataStreamId": "raw:com.google.step_count.cumulative:Xiaomi:M2103K19G:ecb4bcff:STEP_COUNTER",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.cumulative"
+			},
+			"dataStreamName": "Samsung Step Counter",
+			"device": {
+				"model": "SM-R890",
+				"version": "",
+				"type": "watch",
+				"uid": "d72bcf69",
+				"manufacturer": "samsung"
+			},
+			"dataStreamId": "raw:com.google.step_count.cumulative:samsung:SM-R890:d72bcf69:Samsung Step Counter",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "steps",
+						"format": "integer"
+					}
+				],
+				"name": "com.google.step_count.delta"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.step_count.delta:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "weight",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.weight"
+			},
+			"dataStreamName": "user_input",
+			"application": {
+				"packageName": "com.google.android.apps.fitness"
+			},
+			"dataStreamId": "raw:com.google.weight:com.google.android.apps.fitness:user_input",
+			"type": "raw"
+		},
+		{
+			"dataQualityStandard": [],
+			"dataType": {
+				"field": [
+					{
+						"name": "weight",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.weight"
+			},
+			"dataStreamName": "health_platform",
+			"application": {
+				"packageName": "com.sec.android.app.shealth"
+			},
+			"dataStreamId": "raw:com.google.weight:com.sec.android.app.shealth:health_platform",
+			"type": "raw"
+		},
+		{
+			"name": "WorkoutHome weight",
+			"dataStreamName": "",
+			"dataType": {
+				"field": [
+					{
+						"name": "weight",
+						"format": "floatPoint"
+					}
+				],
+				"name": "com.google.weight"
+			},
+			"dataQualityStandard": [],
+			"application": {
+				"packageName": "workout.homeworkouts.workouttrainer"
+			},
+			"dataStreamId": "raw:com.google.weight:workout.homeworkouts.workouttrainer:",
+			"type": "raw"
+		}
+	]
+}

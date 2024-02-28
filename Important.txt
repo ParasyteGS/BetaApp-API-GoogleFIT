@@ -1,0 +1,58 @@
+
+Mostar Fuentes de datos:
+GET
+https://www.googleapis.com/fitness/v1/users/me/dataSources
+
+
+Obtener datos específicos:
+
+POST
+https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate
+
+{
+  "aggregateBy": [{
+    "dataTypeName": "com.google.heart_rate.bpm"
+  },
+  {
+    "dataTypeName": "com.google.step_count.delta"
+  }
+],
+  "bucketByTime": { "durationMillis": 86400000},
+  "startTimeMillis": 1708750800000,
+  "endTimeMillis": 1708837199000
+}
+
+
+Base de datos:
+
+Usuario:
+Nombre str
+Apellido str
+Email str
+Numero str
+Sexo str
+
+heart_rate:
+AvValue float
+MaxValue float
+MinValue float
+Tiempo de muestra datetime
+
+OX2:
+AvValue float
+MaxValue float
+MinValue float
+Tiempo de muestra datetime
+
+
+Presion:
+SisAv float
+SisMax float
+SisMin float
+DiaAv float
+DiaMax float
+DiaMin float
+Tiempo de muestra datetime
+ 
+
+
