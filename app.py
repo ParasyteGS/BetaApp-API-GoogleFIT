@@ -38,15 +38,13 @@ def test_api_request():
     if "credentials" not in flask.session:
         return flask.redirect("authorize")
     credentials = google.oauth2.credentials.Credentials(**flask.session["credentials"])
-
     fitness = googleapiclient.discovery.build(
         API_SERVICE_NAME, API_VERSION, credentials=credentials
     )
-    lista = fitness.users().dataSources().list(userId="me").execute()
 
     Time = dt.datetime.now()
-    StartTime = dt.datetime(Time.year, Time.month, Time.day, 0, 0, 0)
-    EndTime = dt.datetime(Time.year, Time.month, Time.day, 23, 59, 0)
+    StartTime = dt.datetime(Time.year, Time.month, 28, 0, 0, 0)
+    EndTime = dt.datetime(Time.year, Time.month, 28, 23, 59, 0)
 
     HeartData = GD.GetDatasetHearRate(StartTime, EndTime, "me", fitness)
     HData = PI.parse_heart_bpm(HeartData, "Heart Rate")
@@ -66,8 +64,27 @@ def test_api_request():
     WeightData = GD.GetDatasetWeight(StartTime, EndTime, "me", fitness)
     WeData = PI.parse_weight(WeightData, "Weight")
 
+    ActivityData = GD.GetDatasetActivity(StartTime, EndTime, "me", fitness)
+    AcData = PI.parse_activity(ActivityData, "Activity")
+
+    CaloriesData = GD.GetDatasetCalories(StartTime, EndTime, "me", fitness)
+    CaData = PI.parse_calories(CaloriesData, "Calories")
+
+    SleepData = GD.GetDatasetSleep(StartTime, EndTime, "me", fitness)
+    SlData = PI.parse_sleep(SleepData, "Sleep")
+
     flask.session["credentials"] = credentials_to_dict(credentials)
-    return {**HData, **OData, **BPData, **BFData, **HeData, **WeData}
+    return {
+        **HData,
+        **OData,
+        **BPData,
+        **BFData,
+        **HeData,
+        **WeData,
+        **AcData,
+        **CaData,
+        **SlData,
+    }
 
 
 @app.route("/authorize")

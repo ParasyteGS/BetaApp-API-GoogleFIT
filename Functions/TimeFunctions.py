@@ -22,6 +22,13 @@ def NanoToTime(nanoseconds):
     return formatted_date
 
 
+def NanoToTimeWoHours(nanoseconds):
+    seconds = int(nanoseconds) / 1e9
+    formatted_date = datetime.fromtimestamp(seconds).strftime("%d/%m/%Y")
+
+    return formatted_date
+
+
 def TimeToNanos(date_time):
     epoch = datetime.fromtimestamp(0)
     delta = date_time - epoch
