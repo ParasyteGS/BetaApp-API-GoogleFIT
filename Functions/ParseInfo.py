@@ -70,7 +70,39 @@ def parse_body_fat(ds, data_type: str) -> List[MD.BodyFat]:
         for ds_item in res["dataset"]:
             for p in ds_item["point"]:
                 row = MD.BodyFat()
-                row.value = p["value"][0]["fpVal"]
+                row.value = round(p["value"][0]["fpVal"], 2)
+                row.time = tf.NanoToTime(p["startTimeNanos"])
+                data.append(row.to_dict())
+    final_data = {data_type: data}
+
+    return final_data
+
+
+def parse_height(ds, data_type: str) -> List[MD.Height]:
+
+    data = []
+
+    for res in ds["bucket"]:
+        for ds_item in res["dataset"]:
+            for p in ds_item["point"]:
+                row = MD.Height()
+                row.value = p["value"][1]["fpVal"]
+                row.time = tf.NanoToTime(p["startTimeNanos"])
+                data.append(row.to_dict())
+    final_data = {data_type: data}
+
+    return final_data
+
+
+def parse_weight(ds, data_type: str) -> List[MD.Weight]:
+
+    data = []
+
+    for res in ds["bucket"]:
+        for ds_item in res["dataset"]:
+            for p in ds_item["point"]:
+                row = MD.Weight()
+                row.value = p["value"][1]["fpVal"]
                 row.time = tf.NanoToTime(p["startTimeNanos"])
                 data.append(row.to_dict())
     final_data = {data_type: data}

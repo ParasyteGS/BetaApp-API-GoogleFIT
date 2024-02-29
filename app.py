@@ -49,16 +49,25 @@ def test_api_request():
     EndTime = dt.datetime(Time.year, Time.month, Time.day, 23, 59, 0)
 
     HeartData = GD.GetDatasetHearRate(StartTime, EndTime, "me", fitness)
-
     HData = PI.parse_heart_bpm(HeartData, "Heart Rate")
+
     OxygenData = GD.GetDatasetOxSaturation(StartTime, EndTime, "me", fitness)
     OData = PI.parse_ox_saturation(OxygenData, "Oxygen Saturation")
 
     BloodPressureData = GD.GetDatasetBloodPressure(StartTime, EndTime, "me", fitness)
     BPData = PI.parse_blood_pressure(BloodPressureData, "Blood Pressure")
 
+    BodyFatData = GD.GetDatasetBodyFat(StartTime, EndTime, "me", fitness)
+    BFData = PI.parse_body_fat(BodyFatData, "Body Fat")
+
+    HeightData = GD.GetDatasetHeight(StartTime, EndTime, "me", fitness)
+    HeData = PI.parse_height(HeightData, "Height")
+
+    WeightData = GD.GetDatasetWeight(StartTime, EndTime, "me", fitness)
+    WeData = PI.parse_weight(WeightData, "Weight")
+
     flask.session["credentials"] = credentials_to_dict(credentials)
-    return OData
+    return {**HData, **OData, **BPData, **BFData, **HeData, **WeData}
 
 
 @app.route("/authorize")

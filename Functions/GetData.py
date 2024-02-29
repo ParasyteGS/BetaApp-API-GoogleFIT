@@ -73,13 +73,13 @@ def GetDatasetBloodPressure(StartTime: str, EndTime: str, UserID: str, fitness):
     return BloodPressureData
 
 
-def GetDatasetBodyFat(StartTime: str, EndTime: str, UserID: str, fitness):
+def GetDatasetBodyFat(StartTime: str, EndTime: str, UserID: str, fitness):  # Daily
 
     body = {
         "aggregateBy": [
             {"dataTypeName": "com.google.body.fat.percentage"},
         ],
-        "bucketByTime": {"durationMillis": 60000},
+        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
         "startTimeMillis": tf.TimeToMillis(StartTime),
         "endTimeMillis": tf.TimeToMillis(EndTime),
     }
@@ -95,3 +95,51 @@ def GetDatasetBodyFat(StartTime: str, EndTime: str, UserID: str, fitness):
     )
 
     return BodyFatData
+
+
+def GetDatasetHeight(StartTime: str, EndTime: str, UserID: str, fitness):
+
+    body = {
+        "aggregateBy": [
+            {"dataTypeName": "com.google.height"},
+        ],
+        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
+        "startTimeMillis": tf.TimeToMillis(StartTime),
+        "endTimeMillis": tf.TimeToMillis(EndTime),
+    }
+
+    Height = (
+        fitness.users()
+        .dataset()
+        .aggregate(
+            userId=UserID,
+            body=body,
+        )
+        .execute()
+    )
+
+    return Height
+
+
+def GetDatasetWeight(StartTime: str, EndTime: str, UserID: str, fitness):
+
+    body = {
+        "aggregateBy": [
+            {"dataTypeName": "com.google.weight"},
+        ],
+        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
+        "startTimeMillis": tf.TimeToMillis(StartTime),
+        "endTimeMillis": tf.TimeToMillis(EndTime),
+    }
+
+    Weight = (
+        fitness.users()
+        .dataset()
+        .aggregate(
+            userId=UserID,
+            body=body,
+        )
+        .execute()
+    )
+
+    return Weight

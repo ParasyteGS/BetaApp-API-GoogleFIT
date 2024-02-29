@@ -1,5 +1,4 @@
 from datetime import datetime, timezone
-import pytz
 import locale
 
 from datetime import datetime
