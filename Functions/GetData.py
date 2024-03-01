@@ -25,13 +25,15 @@ def GetDatasetHearRate(StartTime: str, EndTime: str, UserID: str, fitness):
     return HeartData
 
 
-def GetDatasetOxSaturation(StartTime: str, EndTime: str, UserID: str, fitness):  # Daily
+def GetDatasetOxSaturation(
+    StartTime: str, EndTime: str, UserID: str, fitness
+):  # Minuto a Minuto
 
     body = {
         "aggregateBy": [
             {"dataTypeName": "com.google.oxygen_saturation"},
         ],
-        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
+        "bucketByTime": {"durationMillis": 60000},
         "startTimeMillis": tf.TimeToMillis(StartTime),
         "endTimeMillis": tf.TimeToMillis(EndTime),
     }
@@ -51,13 +53,13 @@ def GetDatasetOxSaturation(StartTime: str, EndTime: str, UserID: str, fitness): 
 
 def GetDatasetBloodPressure(
     StartTime: str, EndTime: str, UserID: str, fitness
-):  # daily
+):  # Minuto a Minuto
 
     body = {
         "aggregateBy": [
             {"dataTypeName": "com.google.blood_pressure"},
         ],
-        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
+        "bucketByTime": {"durationMillis": 60000},
         "startTimeMillis": tf.TimeToMillis(StartTime),
         "endTimeMillis": tf.TimeToMillis(EndTime),
     }

@@ -24,6 +24,9 @@ def parse_heart_bpm(ds, data_type: str) -> List[MD.HeartRate]:
     return final_data
 
 
+# Filtra los datos de oxigeno en la sangre, minuto a minuto
+
+
 def parse_ox_saturation(ds, data_type: str) -> List[MD.OxygenSaturation]:
 
     data = []
@@ -35,13 +38,14 @@ def parse_ox_saturation(ds, data_type: str) -> List[MD.OxygenSaturation]:
                 row.value = round(p["value"][0]["fpVal"], 2)
                 row.max = p["value"][1]["fpVal"]
                 row.min = p["value"][2]["fpVal"]
-                row.time = tf.NanoToTimeWoHours(p["startTimeNanos"])
+                row.time = tf.NanoToTime(p["startTimeNanos"])
                 row.type = data_type
                 data.append(row.to_dict())
 
     return {data_type: data}
 
 
+# Filtra los datos de presion sanguinea, minuto a minuto
 def parse_blood_pressure(ds, data_type: str) -> List[MD.BloddPressure]:
 
     data = []
@@ -63,6 +67,7 @@ def parse_blood_pressure(ds, data_type: str) -> List[MD.BloddPressure]:
     return final_data
 
 
+# Filtra los datos de grasa corporal, diario
 def parse_body_fat(ds, data_type: str) -> List[MD.BodyFat]:
 
     data = []
@@ -79,6 +84,7 @@ def parse_body_fat(ds, data_type: str) -> List[MD.BodyFat]:
     return final_data
 
 
+# Filtra los datos de altura, una vez
 def parse_height(ds, data_type: str) -> List[MD.Height]:
 
     data = []
@@ -95,6 +101,7 @@ def parse_height(ds, data_type: str) -> List[MD.Height]:
     return final_data
 
 
+# Filtra los datos de peso, diario
 def parse_weight(ds, data_type: str) -> List[MD.Weight]:
 
     data = []
@@ -111,6 +118,7 @@ def parse_weight(ds, data_type: str) -> List[MD.Weight]:
     return final_data
 
 
+# Filtra los datos de actividad, minuto a minuto
 def parse_activity(ds, data_type: str) -> List[MD.Activity]:
 
     data = []
@@ -127,6 +135,7 @@ def parse_activity(ds, data_type: str) -> List[MD.Activity]:
     return final_data
 
 
+# Filtra los datos de calorias, diario
 def parse_calories(ds, data_type: str) -> List[MD.Calories]:
 
     data = []
@@ -143,6 +152,7 @@ def parse_calories(ds, data_type: str) -> List[MD.Calories]:
     return final_data
 
 
+# Filtra los datos de sueño, minuto a minuto
 def parse_sleep(ds, data_type: str) -> List[MD.Sleep]:
 
     data = []
@@ -152,6 +162,22 @@ def parse_sleep(ds, data_type: str) -> List[MD.Sleep]:
             for p in ds_item["point"]:
                 row = MD.Sleep()
                 row.value = MapSleepType[p["value"][0]["intVal"]]
+                row.time = tf.NanoToTimeWoHours(p["startTimeNanos"])
+                data.append(row.to_dict())
+    final_data = {data_type: data}
+
+    return final_data
+
+
+def parse_activity_minutes(ds, data_type: str) -> List[MD.Activity_minutes]:  # Daily
+
+    data = []
+
+    for res in ds["bucket"]:
+        for ds_item in res["dataset"]:
+            for p in ds_item["point"]:
+                row = MD.Activity_minutes()
+                row.value = p["value"][0]["intVal"]
                 row.time = tf.NanoToTimeWoHours(p["startTimeNanos"])
                 data.append(row.to_dict())
     final_data = {data_type: data}
