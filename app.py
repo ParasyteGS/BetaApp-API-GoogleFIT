@@ -80,26 +80,10 @@ def test_api_request():
     ActivityMinutes = GD.GetDatasetActivityMinutes(StartTime, EndTime, "me", fitness)
     AMData = PI.parse_activity_minutes(ActivityMinutes, "Activity Minutes")
 
-<<<<<<< HEAD
     # ST.fetch_and_store_data(fitness)
 
     flask.session["credentials"] = credentials_to_dict(credentials)
     return {**HData}
-=======
-    flask.session["credentials"] = credentials_to_dict(credentials)
-    return {
-        **HData,
-        **OData,
-        **BPData,
-        **BFData,
-        **HeData,
-        **WeData,
-        **AcData,
-        **CaData,
-        **SlData,
-        **AMData,
-    }
->>>>>>> 328c766319312c2d00f79b1737f5973427158936
 
 
 @app.route("/authorize")
