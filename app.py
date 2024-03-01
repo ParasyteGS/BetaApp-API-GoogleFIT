@@ -15,6 +15,7 @@ import Functions.GetData as GD
 import Functions.ParseInfo as PI
 import Functions.scheduled_tasks as ST
 
+
 CLIENT_SECRET_FILE = "client_secret.json"
 SCOPES = [
     "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.blood_glucose.read https://www.googleapis.com/auth/fitness.blood_pressure.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.body_temperature.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.location.read https://www.googleapis.com/auth/fitness.nutrition.read https://www.googleapis.com/auth/fitness.oxygen_saturation.read https://www.googleapis.com/auth/fitness.reproductive_health.read https://www.googleapis.com/auth/fitness.sleep.read"
@@ -79,10 +80,26 @@ def test_api_request():
     ActivityMinutes = GD.GetDatasetActivityMinutes(StartTime, EndTime, "me", fitness)
     AMData = PI.parse_activity_minutes(ActivityMinutes, "Activity Minutes")
 
+<<<<<<< HEAD
     # ST.fetch_and_store_data(fitness)
 
     flask.session["credentials"] = credentials_to_dict(credentials)
     return {**HData}
+=======
+    flask.session["credentials"] = credentials_to_dict(credentials)
+    return {
+        **HData,
+        **OData,
+        **BPData,
+        **BFData,
+        **HeData,
+        **WeData,
+        **AcData,
+        **CaData,
+        **SlData,
+        **AMData,
+    }
+>>>>>>> 328c766319312c2d00f79b1737f5973427158936
 
 
 @app.route("/authorize")
