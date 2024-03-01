@@ -23,36 +23,4 @@ https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate
 }
 
 
-Base de datos:
-
-Usuario:
-Nombre str
-Apellido str
-Email str
-Numero str
-Sexo str
-
-heart_rate:
-AvValue float
-MaxValue float
-MinValue float
-Tiempo de muestra datetime
-
-OX2:
-AvValue float
-MaxValue float
-MinValue float
-Tiempo de muestra datetime
-
-
-Presion:
-SisAv float
-SisMax float
-SisMin float
-DiaAv float
-DiaMax float
-DiaMin float
-Tiempo de muestra datetime
- 
-
-
+# Recuerda instalar PostgreSQL en tu PC
