@@ -14,6 +14,7 @@ from types import SimpleNamespace
 import Functions.GetData as GD
 import Functions.ParseInfo as PI
 
+
 CLIENT_SECRET_FILE = "client_secret.json"
 SCOPES = [
     "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.blood_glucose.read https://www.googleapis.com/auth/fitness.blood_pressure.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.body_temperature.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.location.read https://www.googleapis.com/auth/fitness.nutrition.read https://www.googleapis.com/auth/fitness.oxygen_saturation.read https://www.googleapis.com/auth/fitness.reproductive_health.read https://www.googleapis.com/auth/fitness.sleep.read"
@@ -43,8 +44,10 @@ def test_api_request():
     )
 
     Time = dt.datetime.now()
-    StartTime = dt.datetime(Time.year, Time.month, 28, 0, 0, 0)
-    EndTime = dt.datetime(Time.year, Time.month, 28, 23, 59, 0)
+    StartTime = dt.datetime(Time.year, Time.month, Time.day, 0, 0, 0)
+    EndTime = dt.datetime(Time.year, Time.month, Time.day, 23, 59, 0)
+    STHeight = dt.datetime(2024, 1, 1, 0, 0, 0)
+    ETHeight = dt.datetime(Time.year, Time.month, Time.day, 23, 59, 0)
 
     HeartData = GD.GetDatasetHearRate(StartTime, EndTime, "me", fitness)
     HData = PI.parse_heart_bpm(HeartData, "Heart Rate")
@@ -58,7 +61,7 @@ def test_api_request():
     BodyFatData = GD.GetDatasetBodyFat(StartTime, EndTime, "me", fitness)
     BFData = PI.parse_body_fat(BodyFatData, "Body Fat")
 
-    HeightData = GD.GetDatasetHeight(StartTime, EndTime, "me", fitness)
+    HeightData = GD.GetDatasetHeight(STHeight, ETHeight, "me", fitness)
     HeData = PI.parse_height(HeightData, "Height")
 
     WeightData = GD.GetDatasetWeight(StartTime, EndTime, "me", fitness)
@@ -73,6 +76,9 @@ def test_api_request():
     SleepData = GD.GetDatasetSleep(StartTime, EndTime, "me", fitness)
     SlData = PI.parse_sleep(SleepData, "Sleep")
 
+    ActivityMinutes = GD.GetDatasetActivityMinutes(StartTime, EndTime, "me", fitness)
+    AMData = PI.parse_activity_minutes(ActivityMinutes, "Activity Minutes")
+
     flask.session["credentials"] = credentials_to_dict(credentials)
     return {
         **HData,
@@ -84,6 +90,7 @@ def test_api_request():
         **AcData,
         **CaData,
         **SlData,
+        **AMData,
     }
 
 

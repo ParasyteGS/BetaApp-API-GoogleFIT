@@ -105,7 +105,7 @@ def GetDatasetHeight(StartTime: str, EndTime: str, UserID: str, fitness):  # Una
         "aggregateBy": [
             {"dataTypeName": "com.google.height"},
         ],
-        "bucketByTime": {"period": {"type": "day", "value": 1, "timeZoneId": "GMT"}},
+        "bucketByTime": {"period": {"type": "month", "value": 1, "timeZoneId": "GMT"}},
         "startTimeMillis": tf.TimeToMillis(StartTime),
         "endTimeMillis": tf.TimeToMillis(EndTime),
     }

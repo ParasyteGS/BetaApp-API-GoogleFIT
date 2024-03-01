@@ -143,3 +143,15 @@ class Sleep:
             "Sleep_minutes": self.value,
             "Date": self.time,
         }
+
+
+class ActivityMinutes:
+    def __init__(self, time_sample=None, value=0.0):
+        self.time = time_sample
+        self.value = value
+
+    def to_dict(self):
+        return {
+            "Activity_minutes": self.value,
+            "Date": self.time,
+        }

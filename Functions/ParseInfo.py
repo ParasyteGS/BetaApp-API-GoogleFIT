@@ -152,6 +152,22 @@ def parse_sleep(ds, data_type: str) -> List[MD.Sleep]:
             for p in ds_item["point"]:
                 row = MD.Sleep()
                 row.value = MapSleepType[p["value"][0]["intVal"]]
+                row.time = tf.NanoToTime(p["startTimeNanos"])
+                data.append(row.to_dict())
+    final_data = {data_type: data}
+
+    return final_data
+
+
+def parse_activity_minutes(ds, data_type: str) -> List[MD.Activity_minutes]:  # Daily
+
+    data = []
+
+    for res in ds["bucket"]:
+        for ds_item in res["dataset"]:
+            for p in ds_item["point"]:
+                row = MD.Activity_minutes()
+                row.value = p["value"][0]["intVal"]
                 row.time = tf.NanoToTimeWoHours(p["startTimeNanos"])
                 data.append(row.to_dict())
     final_data = {data_type: data}
