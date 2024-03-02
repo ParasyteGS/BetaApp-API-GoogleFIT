@@ -18,7 +18,7 @@ import Functions.scheduled_tasks as ST
 
 CLIENT_SECRET_FILE = "client_secret.json"
 SCOPES = [
-    "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.blood_glucose.read https://www.googleapis.com/auth/fitness.blood_pressure.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.body_temperature.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.location.read https://www.googleapis.com/auth/fitness.nutrition.read https://www.googleapis.com/auth/fitness.oxygen_saturation.read https://www.googleapis.com/auth/fitness.reproductive_health.read https://www.googleapis.com/auth/fitness.sleep.read"
+    "openid email profile https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.blood_glucose.read https://www.googleapis.com/auth/fitness.blood_pressure.read https://www.googleapis.com/auth/fitness.body.read https://www.googleapis.com/auth/fitness.body_temperature.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.location.read https://www.googleapis.com/auth/fitness.nutrition.read https://www.googleapis.com/auth/fitness.oxygen_saturation.read https://www.googleapis.com/auth/fitness.reproductive_health.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
 ]
 API_SERVICE_NAME = "fitness"
 API_VERSION = "v1"
@@ -29,10 +29,7 @@ app.secret_key = "random secret"
 
 @app.route("/")
 def index():
-    return print_index_table()
-
-
-# Dame el modelamiento de la base de datos de donde se guarden los siguientes valores: usuario, heart_bpm, oxigen_saturation, wheight, blood_pressure
+    return flask.render_template("index.html")
 
 
 @app.route("/test")
@@ -44,46 +41,8 @@ def test_api_request():
         API_SERVICE_NAME, API_VERSION, credentials=credentials
     )
 
-    Time = dt.datetime.now()
-    StartTime = dt.datetime(Time.year, 2, 29, 0, 0, 0)
-    EndTime = dt.datetime(Time.year, 2, 29, 23, 59, 0)
-    STHeight = dt.datetime(2024, 1, 1, 0, 0, 0)
-    ETHeight = dt.datetime(Time.year, Time.month, Time.day, 23, 59, 0)
-
-    HeartData = GD.GetDatasetHearRate(StartTime, EndTime, "me", fitness)
-    HData = PI.parse_heart_bpm(HeartData, "Heart Rate")
-
-    OxygenData = GD.GetDatasetOxSaturation(StartTime, EndTime, "me", fitness)
-    OData = PI.parse_ox_saturation(OxygenData, "Oxygen Saturation")
-
-    BloodPressureData = GD.GetDatasetBloodPressure(StartTime, EndTime, "me", fitness)
-    BPData = PI.parse_blood_pressure(BloodPressureData, "Blood Pressure")
-
-    BodyFatData = GD.GetDatasetBodyFat(StartTime, EndTime, "me", fitness)
-    BFData = PI.parse_body_fat(BodyFatData, "Body Fat")
-
-    HeightData = GD.GetDatasetHeight(STHeight, ETHeight, "me", fitness)
-    HeData = PI.parse_height(HeightData, "Height")
-
-    WeightData = GD.GetDatasetWeight(StartTime, EndTime, "me", fitness)
-    WeData = PI.parse_weight(WeightData, "Weight")
-
-    ActivityData = GD.GetDatasetActivity(StartTime, EndTime, "me", fitness)
-    AcData = PI.parse_activity(ActivityData, "Activity")
-
-    CaloriesData = GD.GetDatasetCalories(StartTime, EndTime, "me", fitness)
-    CaData = PI.parse_calories(CaloriesData, "Calories")
-
-    SleepData = GD.GetDatasetSleep(StartTime, EndTime, "me", fitness)
-    SlData = PI.parse_sleep(SleepData, "Sleep")
-
-    ActivityMinutes = GD.GetDatasetActivityMinutes(StartTime, EndTime, "me", fitness)
-    AMData = PI.parse_activity_minutes(ActivityMinutes, "Activity Minutes")
-
-    # ST.fetch_and_store_data(fitness)
-
     flask.session["credentials"] = credentials_to_dict(credentials)
-    return {**HData}
+    return "Gracias por entrar al programa"
 
 
 @app.route("/authorize")
