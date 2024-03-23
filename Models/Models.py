@@ -74,14 +74,12 @@ class BodyFat:
 
 
 class Height:
-    def __init__(self, time_sample=None, value=0.0):
-        self.time = time_sample
+    def __init__(self, value=0.0):
         self.value = value
 
     def to_dict(self):
         return {
             "Height": self.value,
-            "Date": self.time,
         }
 
 
@@ -117,18 +115,6 @@ class Calories:
     def to_dict(self):
         return {
             "Calories": self.value,
-            "Date": self.time,
-        }
-
-
-class Activity_minutes:
-    def __init__(self, time_sample=None, value=0.0):
-        self.time = time_sample
-        self.value = value
-
-    def to_dict(self):
-        return {
-            "Activity_minutes": self.value,
             "Date": self.time,
         }
 

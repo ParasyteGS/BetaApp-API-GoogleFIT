@@ -14,8 +14,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 
 
-engine = create_engine("postgresql://postgres:alex2134@localhost:5432/neuroapp")
-
 Base = declarative_base()
 
 
@@ -134,4 +132,5 @@ class Sleep(Base):
     paciente = relationship("Paciente")
 
 
+engine = create_engine("postgresql://postgres:alex2134@localhost:5432/neurohdb")
 Base.metadata.create_all(engine)

@@ -10,11 +10,18 @@ import json
 import time
 from types import SimpleNamespace
 
+
 # Funciones necesarias para obtener los datos de la API de Google Fit
 import Functions.GetData as GD
 import Functions.ParseInfo as PI
-import Functions.scheduled_tasks as ST
 
+# Conexión a la base de datos
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from db.CreateDB import *
+
+# Guardar Base de datos
+import Functions.scheduled_tasks as ST
 
 CLIENT_SECRET_FILE = "client_secret.json"
 SCOPES = [
@@ -26,13 +33,29 @@ API_VERSION = "v1"
 app = flask.Flask(__name__)
 app.secret_key = "random secret"
 
+engine = create_engine("postgresql://postgres:alex2134@localhost:5432/neurohdb")
+Session = sessionmaker(bind=engine)
+session = Session()
+
 
 @app.route("/")
 def index():
-    return flask.render_template("index.html")
+    if "credentials" in flask.session:
+        return flask.redirect(flask.url_for("test_api_request"))
+    else:
+        return flask.render_template("index.html")
 
 
-@app.route("/test")
+def height_data(fitness):
+    # Obtener la altura del usuario
+    StartTime = dt.datetime(2024, 1, 1, 0, 0, 0)
+    EndTime = dt.datetime.now()
+    height_data = GD.GetDatasetHeight(StartTime, EndTime, "me", fitness)
+    parse_height_data = PI.parse_height(height_data, "Height")
+    return parse_height_data
+
+
+@app.route("/Gracias")
 def test_api_request():
     if "credentials" not in flask.session:
         return flask.redirect("authorize")
@@ -41,26 +64,55 @@ def test_api_request():
         API_SERVICE_NAME, API_VERSION, credentials=credentials
     )
 
+    userinfo_service = googleapiclient.discovery.build(
+        "oauth2", "v2", credentials=credentials
+    )
+    user_info = userinfo_service.userinfo().get().execute()
+
+    paciente = session.query(Paciente).filter_by(email=user_info["email"]).first()
+
+    user_id = paciente.user_id
+
+    # # MinuteData
+    # ST.inser_heart_rate(user_id, fitness)
+    # ST.insert_oxygen(user_id, fitness)
+    # ST.insert_blood_pressure(user_id, fitness)
+    # ST.inser_activity_type(user_id, fitness)
+
+    # # DailyData
+
+    # ST.insert_body_fat(user_id, fitness)
+    # ST.insert_calories(user_id, fitness)
+
+    # ST.insert_Weight(user_id, fitness)
+    # ST.insert_activity_minutes(user_id, fitness)
+
+    # ST.insert_sleep(user_id, fitness)
+
     flask.session["credentials"] = credentials_to_dict(credentials)
-    return "Gracias por entrar al programa"
+    return flask.render_template("Gracias.html", user_info=user_info)
 
 
 @app.route("/authorize")
 def authorize():
-    flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-        CLIENT_SECRET_FILE, scopes=SCOPES
-    )
+    if "credentials" in flask.session:
+        return flask.render_template("Gracias.html")
 
-    flow.redirect_uri = flask.url_for("oauth2callback", _external=True)
+    else:
+        flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+            CLIENT_SECRET_FILE, scopes=SCOPES
+        )
 
-    authorization_url, state = flow.authorization_url(
-        access_type="offline",
-        include_granted_scopes="true",
-    )
+        flow.redirect_uri = flask.url_for("oauth2callback", _external=True)
 
-    flask.session["state"] = state
+        authorization_url, state = flow.authorization_url(
+            access_type="offline",
+            include_granted_scopes="true",
+        )
 
-    return flask.redirect(authorization_url)
+        flask.session["state"] = state
+
+        return flask.redirect(authorization_url)
 
 
 @app.route("/oauth2callback")
@@ -77,39 +129,39 @@ def oauth2callback():
     flow.fetch_token(authorization_response=authorization_response)
 
     credentials = flow.credentials
+
+    # Obtener información del usuario:
+    fitness = googleapiclient.discovery.build(
+        API_SERVICE_NAME, API_VERSION, credentials=credentials
+    )
+    userinfo_service = googleapiclient.discovery.build(
+        "oauth2", "v2", credentials=credentials
+    )
+    user_info = userinfo_service.userinfo().get().execute()
+
+    parse_height_data = height_data(fitness)
+
+    Height = parse_height_data["Height"][0]["Height"]
+
+    paciente = session.query(Paciente).filter_by(email=user_info["email"]).first()
+    if not paciente:
+        new_paciente = Paciente(
+            first_name=user_info.get("given_name", ""),
+            last_name=user_info.get("family_name", ""),
+            email=user_info["email"],
+            access_token=credentials.token,
+            refresh_token=credentials.refresh_token,
+            height=Height,
+        )
+        session.add(new_paciente)
+    else:
+        paciente.access_token = credentials.token
+        paciente.refresh_token = credentials.refresh_token
+    session.commit()
+
     flask.session["credentials"] = credentials_to_dict(credentials)
 
     return flask.redirect(flask.url_for("test_api_request"))
-
-
-@app.route("/revoke")
-def revoke():
-    if "credentials" not in flask.session:
-        return (
-            'You need to <a href="/authorize">authorize</a> before '
-            "testing the code to revoke credentials."
-        )
-
-    credentials = google.oauth2.credentials.Credentials(**flask.session["credentials"])
-
-    revoke = requests.post(
-        "https://oauth2.googleapis.com/revoke",
-        params={"token": credentials.token},
-        headers={"content-type": "application/x-www-form-urlencoded"},
-    )
-
-    status_code = getattr(revoke, "status_code")
-    if status_code == 200:
-        return "Credentials successfully revoked" + print_index_table()
-    else:
-        return "An error occurred." + print_index_table()
-
-
-@app.route("/clear")
-def clear_credentials():
-    if "credentials" in flask.session:
-        del flask.session["credentials"]
-    return "Credentials have been cleared.<br><br>" + print_index_table()
 
 
 def credentials_to_dict(credentials):
@@ -121,30 +173,6 @@ def credentials_to_dict(credentials):
         "client_secret": credentials.client_secret,
         "scopes": credentials.scopes,
     }
-
-
-def print_index_table():
-    return (
-        "<table>"
-        + '<tr><td><a href="/test">Test an API request</a></td>'
-        + "<td>Submit an API request and see a formatted JSON response. "
-        + "    Go through the authorization flow if there are no stored "
-        + "    credentials for the user.</td></tr>"
-        + '<tr><td><a href="/authorize">Test the auth flow directly</a></td>'
-        + "<td>Go directly to the authorization flow. If there are stored "
-        + "    credentials, you still might not be prompted to reauthorize "
-        + "    the application.</td></tr>"
-        + '<tr><td><a href="/revoke">Revoke current credentials</a></td>'
-        + "<td>Revoke the access token associated with the current user "
-        + "    session. After revoking credentials, if you go to the test "
-        + "    page, you should see an <code>invalid_grant</code> error."
-        + "</td></tr>"
-        + '<tr><td><a href="/clear">Clear Flask session credentials</a></td>'
-        + "<td>Clear the access token currently stored in the user session. "
-        + '    After clearing the token, if you <a href="/test">test the '
-        + "    API request</a> again, you should go back to the auth flow."
-        + "</td></tr></table>"
-    )
 
 
 if __name__ == "__main__":
